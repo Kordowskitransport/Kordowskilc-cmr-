@@ -6,112 +6,101 @@
 <title>Kordowski Logistic - Dashboard</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f4f8ff;
 }
 
-body{
-background:#f4f8fc;
+.topbar {
+    background: #0b63ff;
+    color: white;
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.header{
-height:70px;
-background:#0b63ff;
-color:white;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 30px;
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 220px;
+    height: 100%;
+    background: #0f1c3f;
+    color: white;
+    padding-top: 20px;
 }
 
-.sidebar{
-position:fixed;
-top:70px;
-left:0;
-width:240px;
-height:calc(100vh - 70px);
-background:#13213d;
-padding-top:20px;
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 12px 20px;
+    text-decoration: none;
 }
 
-.sidebar a{
-display:block;
-padding:15px 25px;
-color:white;
-text-decoration:none;
+.sidebar a:hover {
+    background: #1d4ed8;
 }
 
-.sidebar a:hover{
-background:#1d4ed8;
+.content {
+    margin-left: 220px;
+    padding: 30px;
 }
 
-.main{
-margin-left:240px;
-padding:30px;
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.card{
-background:white;
-padding:25px;
-border-radius:15px;
-box-shadow:0 5px 20px rgba(0,0,0,.1);
-}
-
-button{
-padding:12px 20px;
-background:#0b63ff;
-color:white;
-border:none;
-border-radius:8px;
-cursor:pointer;
+button {
+    background: white;
+    color: #0b63ff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 8px;
 }
 </style>
 
 </head>
+
 <body>
 
-<div class="header">
-<h2>Kordowski Logistic</h2>
-
-<button onclick="logout()">Wyloguj</button>
+<div class="topbar">
+    <h3>Kordowski Logistic</h3>
+    <button onclick="logout()">Wyloguj</button>
 </div>
 
 <div class="sidebar">
-
-<a href="#">🏠 Dashboard</a>
-<a href="#">📄 CMR</a>
-<a href="#">🚛 Kierowcy</a>
-<a href="#">💰 Rozliczenia</a>
-
+    <a href="#">🏠 Dashboard</a>
+    <a href="#">📄 CMR</a>
+    <a href="#">🚛 Kierowcy</a>
+    <a href="#">💰 Rozliczenia</a>
 </div>
 
-<div class="main">
+<div class="content">
 
-<div class="card">
-
-<h1>Witaj w systemie Kordowski Logistic</h1>
-
-<p>Logowanie działa poprawnie ✅</p>
-
-</div>
+    <div class="card">
+        <h2>Dashboard</h2>
+        <p>System działa poprawnie ✔</p>
+    </div>
 
 </div>
 
 <script>
-
-if(!localStorage.getItem("token")){
-location.href="/";
+// BLOKADA BEZ LOGINU
+if (!localStorage.getItem("token")) {
+    window.location.href = "/";
 }
 
-function logout(){
-localStorage.removeItem("token");
-localStorage.removeItem("role");
-location.href="/";
+function logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    window.location.href = "/";
 }
-
 </script>
 
 </body>
