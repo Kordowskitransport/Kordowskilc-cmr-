@@ -1,1 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Kierowcy</title>
+<link rel="stylesheet" href="css/drivers.css">
+</head>
+<body>
 
+<div class="container">
+    <h1>Kierowcy</h1>
+
+    <div class="form">
+        <input id="name" placeholder="Imię i nazwisko">
+        <input id="email" placeholder="Email">
+        <input id="phone" placeholder="Telefon">
+        <input id="truck" placeholder="Numer pojazdu">
+
+        <button onclick="addDriver()">
+            Dodaj kierowcę
+        </button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Imię</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Pojazd</th>
+            </tr>
+        </thead>
+
+        <tbody id="drivers"></tbody>
+    </table>
+</div>
+
+<script src="js/drivers.js"></script>
+
+</body>
+</html>
