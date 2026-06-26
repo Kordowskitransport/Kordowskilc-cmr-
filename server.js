@@ -89,3 +89,24 @@ app.post("/api/login", (req, res) => {
 app.listen(3000, () => {
     console.log("Serwer działa.");
 });
+const bcrypt = require("bcryptjs");
+
+async function createAdmin() {
+    const hash =
+        await bcrypt.hash("Kordowskidebi1123", 10);
+
+    db.run(
+        `
+        INSERT OR IGNORE INTO users
+        (id,email,password,role)
+        VALUES
+        (1,
+        'RobertPolak@gmail.com',
+        ?,
+        'admin')
+        `,
+        [hash]
+    );
+}
+
+createAdmin();
