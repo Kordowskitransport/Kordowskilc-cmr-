@@ -1,58 +1,118 @@
-<script>
-if (!localStorage.getItem("token")) {
-    window.location = "/login.html";
-}
-</script>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Kordowski Logistic</title>
-<link rel="stylesheet" href="css/dashboard.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kordowski Logistic - Dashboard</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f8fc;
+}
+
+.header{
+height:70px;
+background:#0b63ff;
+color:white;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 30px;
+}
+
+.sidebar{
+position:fixed;
+top:70px;
+left:0;
+width:240px;
+height:calc(100vh - 70px);
+background:#13213d;
+padding-top:20px;
+}
+
+.sidebar a{
+display:block;
+padding:15px 25px;
+color:white;
+text-decoration:none;
+}
+
+.sidebar a:hover{
+background:#1d4ed8;
+}
+
+.main{
+margin-left:240px;
+padding:30px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+button{
+padding:12px 20px;
+background:#0b63ff;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+</style>
+
 </head>
 <body>
 
-<div class="sidebar">
-    <h2>KLMS</h2>
+<div class="header">
+<h2>Kordowski Logistic</h2>
 
-    <a href="#">🏠 Dashboard</a>
-    <a href="/cmr.html">📄 CMR</a>
-    <a href="#">🚛 Kierowcy</a>
-    <a href="#">🗺️ Mapa</a>
-    <a href="#">💰 Rozliczenia</a>
-    <a href="#" onclick="logout()">🚪 Wyloguj</a>
+<button onclick="logout()">Wyloguj</button>
 </div>
 
-<div class="content">
-    <h1>Witaj w Kordowski Logistic Manager System</h1>
+<div class="sidebar">
 
-    <div class="cards">
+<a href="#">🏠 Dashboard</a>
+<a href="#">📄 CMR</a>
+<a href="#">🚛 Kierowcy</a>
+<a href="#">💰 Rozliczenia</a>
 
-        <div class="card">
-            <h3>Aktywne trasy</h3>
-            <span>0</span>
-        </div>
+</div>
 
-        <div class="card">
-            <h3>Kierowcy</h3>
-            <span>1</span>
-        </div>
+<div class="main">
 
-        <div class="card">
-            <h3>Dokumenty CMR</h3>
-            <span>0</span>
-        </div>
+<div class="card">
 
-    </div>
+<h1>Witaj w systemie Kordowski Logistic</h1>
+
+<p>Logowanie działa poprawnie ✅</p>
+
+</div>
+
 </div>
 
 <script>
-function logout() {
-    localStorage.removeItem("token");
-    window.location = "/login.html";
+
+if(!localStorage.getItem("token")){
+location.href="/";
 }
+
+function logout(){
+localStorage.removeItem("token");
+localStorage.removeItem("role");
+location.href="/";
+}
+
 </script>
 
 </body>
 </html>
-<a href="/cmr-list.html">📋 Lista CMR</a>
