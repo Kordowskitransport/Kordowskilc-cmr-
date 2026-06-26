@@ -110,3 +110,15 @@ async function createAdmin() {
 }
 
 createAdmin();
+db.run(`
+CREATE TABLE IF NOT EXISTS cmr (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nadawca TEXT,
+    odbiorca TEXT,
+    zaladunek TEXT,
+    rozladunek TEXT,
+    towar TEXT,
+    waga TEXT,
+    oplata TEXT
+)
+`);
