@@ -221,3 +221,14 @@ app.post("/api/drivers",(req,res)=>{
     });
 
 });
+app.get("/api/drivers",(req,res)=>{
+
+    db.all(
+        "SELECT * FROM drivers",
+        [],
+        (err,rows)=>{
+            res.json(rows);
+        }
+    );
+
+});
