@@ -121,4 +121,44 @@ CREATE TABLE IF NOT EXISTS cmr (
     waga TEXT,
     oplata TEXT
 )
-`);
+`);app.post("/api/cmr", (req,res)=>{
+
+    const {
+        nadawca,
+        odbiorca,
+        zaladunek,
+        rozladunek,
+        towar,
+        waga,
+        oplata
+    } = req.body;
+
+    db.run(
+        `
+        INSERT INTO cmr
+        (
+            nadawca,
+            odbiorca,
+            zaladunek,
+            rozladunek,
+            towar,
+            waga,
+            oplata
+        )
+        VALUES (?,?,?,?,?,?,?)
+        `,
+        [
+            nadawca,
+            odbiorca,
+            zaladunek,
+            rozladunek,
+            towar,
+            waga,
+            oplata
+        ]
+    );
+
+    res.json({
+        message:"CMR zapisane"
+    });
+});
