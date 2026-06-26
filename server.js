@@ -162,3 +162,20 @@ CREATE TABLE IF NOT EXISTS cmr (
         message:"CMR zapisane"
     });
 });
+app.get("/api/cmr", (req,res)=>{
+
+    db.all(
+        "SELECT * FROM cmr ORDER BY id DESC",
+        [],
+        (err, rows)=>{
+            if(err){
+                return res.status(500).json({
+                    message:"Błąd bazy"
+                });
+            }
+
+            res.json(rows);
+        }
+    );
+
+});
