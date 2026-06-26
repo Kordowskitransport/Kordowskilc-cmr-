@@ -1,1 +1,53 @@
 
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Kordowski Logistic</title>
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>KLMS</h2>
+
+    <a href="#">🏠 Dashboard</a>
+    <a href="#">📄 CMR</a>
+    <a href="#">🚛 Kierowcy</a>
+    <a href="#">🗺️ Mapa</a>
+    <a href="#">💰 Rozliczenia</a>
+    <a href="#" onclick="logout()">🚪 Wyloguj</a>
+</div>
+
+<div class="content">
+    <h1>Witaj w Kordowski Logistic Manager System</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Aktywne trasy</h3>
+            <span>0</span>
+        </div>
+
+        <div class="card">
+            <h3>Kierowcy</h3>
+            <span>1</span>
+        </div>
+
+        <div class="card">
+            <h3>Dokumenty CMR</h3>
+            <span>0</span>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function logout() {
+    localStorage.removeItem("token");
+    window.location = "/login.html";
+}
+</script>
+
+</body>
+</html>
