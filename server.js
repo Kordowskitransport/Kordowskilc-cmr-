@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 
 const app = express();
+
 app.use(express.json());
 app.use(express.static("public"));
 
@@ -51,7 +52,7 @@ db.serialize(() => {
 });
 
 /* =========================
-   ADMIN CREATE (FIXED)
+   ADMIN
 ========================= */
 
 async function createAdmin() {
@@ -67,6 +68,14 @@ async function createAdmin() {
 }
 
 createAdmin();
+
+/* =========================
+   ROUTE HOME (LOGIN PAGE)
+========================= */
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 /* =========================
    AUTH
@@ -128,7 +137,7 @@ app.post("/api/login", (req, res) => {
 });
 
 /* =========================
-   CMR SYSTEM
+   CMR
 ========================= */
 
 app.post("/api/cmr", (req, res) => {
@@ -191,17 +200,11 @@ app.get("/api/drivers", (req, res) => {
 });
 
 /* =========================
-   START SERVER (ONLY ONCE!)
+   START SERVER
 ========================= */
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`Serwer działa na porcie ${PORT}`);
-});
-app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-const path = require("path");app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
