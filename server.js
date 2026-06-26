@@ -202,4 +202,6 @@ app.listen(PORT, "0.0.0.0", () => {
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "public", "index.html"));
 });
-const path = require("path");
+const path = require("path");app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "index.html"));
+});
