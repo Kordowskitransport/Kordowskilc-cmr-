@@ -5,17 +5,15 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+const SECRET = "KORDOWSKI_SECRET_2026";
 
 app.use(express.json());
 app.use(express.static("public"));
 
+/* ================= DATABASE ================= */
+
 const db = new sqlite3.Database("./database.db");
-
-const SECRET = "KORDOWSKI_SECRET_2026";
-
-/* =========================
-   DATABASE SETUP
-========================= */
 
 db.serialize(() => {
     db.run(`
@@ -51,35 +49,27 @@ db.serialize(() => {
     `);
 });
 
-/* =========================
-   ADMIN
-========================= */
+/* ================= ADMIN ================= */
 
 async function createAdmin() {
     const hash = await bcrypt.hash("Kordowskidebi1123", 10);
 
     db.run(
-        `
-        INSERT OR IGNORE INTO users (id, email, password, role)
-        VALUES (1, 'RobertPolak@gmail.com', ?, 'admin')
-        `,
+        `INSERT OR IGNORE INTO users (id, email, password, role)
+         VALUES (1, 'RobertPolak@gmail.com', ?, 'admin')`,
         [hash]
     );
 }
 
 createAdmin();
 
-/* =========================
-   ROUTE HOME (LOGIN PAGE)
-========================= */
+/* ================= ROUTES ================= */
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    res.sendFile(path.join(__dirname, "public", "login.html"));
 });
 
-/* =========================
-   AUTH
-========================= */
+/* ---------- AUTH ---------- */
 
 app.post("/api/register", async (req, res) => {
     const { email, password } = req.body;
@@ -91,11 +81,8 @@ app.post("/api/register", async (req, res) => {
         [email, hash, "driver"],
         function (err) {
             if (err) {
-                return res.status(400).json({
-                    message: "Użytkownik już istnieje"
-                });
+                return res.status(400).json({ message: "Użytkownik istnieje" });
             }
-
             res.json({ message: "Konto utworzone" });
         }
     );
@@ -109,17 +96,13 @@ app.post("/api/login", (req, res) => {
         [email],
         async (err, user) => {
             if (!user) {
-                return res.status(401).json({
-                    message: "Nieprawidłowe dane"
-                });
+                return res.status(401).json({ message: "Błędne dane" });
             }
 
             const ok = await bcrypt.compare(password, user.password);
 
             if (!ok) {
-                return res.status(401).json({
-                    message: "Nieprawidłowe dane"
-                });
+                return res.status(401).json({ message: "Błędne dane" });
             }
 
             const token = jwt.sign(
@@ -128,35 +111,19 @@ app.post("/api/login", (req, res) => {
                 { expiresIn: "7d" }
             );
 
-            res.json({
-                token,
-                role: user.role
-            });
+            res.json({ token, role: user.role });
         }
     );
 });
 
-/* =========================
-   CMR
-========================= */
+/* ---------- CMR ---------- */
 
 app.post("/api/cmr", (req, res) => {
-    const {
-        nadawca,
-        odbiorca,
-        zaladunek,
-        rozladunek,
-        towar,
-        waga,
-        oplata
-    } = req.body;
+    const { nadawca, odbiorca, zaladunek, rozladunek, towar, waga, oplata } = req.body;
 
     db.run(
-        `
-        INSERT INTO cmr
-        (nadawca, odbiorca, zaladunek, rozladunek, towar, waga, oplata)
-        VALUES (?,?,?,?,?,?,?)
-        `,
+        `INSERT INTO cmr (nadawca, odbiorca, zaladunek, rozladunek, towar, waga, oplata)
+         VALUES (?,?,?,?,?,?,?)`,
         [nadawca, odbiorca, zaladunek, rozladunek, towar, waga, oplata]
     );
 
@@ -165,28 +132,18 @@ app.post("/api/cmr", (req, res) => {
 
 app.get("/api/cmr", (req, res) => {
     db.all("SELECT * FROM cmr ORDER BY id DESC", [], (err, rows) => {
-        if (err) {
-            return res.status(500).json({
-                message: "Błąd bazy"
-            });
-        }
-
         res.json(rows);
     });
 });
 
-/* =========================
-   DRIVERS
-========================= */
+/* ---------- DRIVERS ---------- */
 
 app.post("/api/drivers", (req, res) => {
     const { name, email, phone, truck } = req.body;
 
     db.run(
-        `
-        INSERT INTO drivers (name,email,phone,truck)
-        VALUES (?,?,?,?)
-        `,
+        `INSERT INTO drivers (name,email,phone,truck)
+         VALUES (?,?,?,?)`,
         [name, email, phone, truck]
     );
 
@@ -199,12 +156,8 @@ app.get("/api/drivers", (req, res) => {
     });
 });
 
-/* =========================
-   START SERVER
-========================= */
-
-const PORT = process.env.PORT || 3000;
+/* ================= START ================= */
 
 app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Serwer działa na porcie ${PORT}`);
+    console.log("Serwer działa na porcie " + PORT);
 });
