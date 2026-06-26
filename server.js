@@ -179,3 +179,12 @@ app.get("/api/cmr", (req,res)=>{
     );
 
 });
+db.run(`
+CREATE TABLE IF NOT EXISTS drivers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    email TEXT UNIQUE,
+    phone TEXT,
+    truck TEXT
+)
+`);
