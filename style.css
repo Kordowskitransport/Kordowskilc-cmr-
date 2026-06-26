@@ -122,3 +122,17 @@ button:hover{
     background:#2c6be0;
     transform:translateY(-2px);
 }
+.logo{
+    font-size:48px;
+    font-weight:900;
+    color:#0B4DBB;
+    letter-spacing:3px;
+    line-height:1;
+}
+
+.subtitle{
+    color:white;
+    font-size:14px;
+    letter-spacing:2px;
+    margin-bottom:40px;
+}
