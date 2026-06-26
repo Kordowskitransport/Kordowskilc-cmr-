@@ -31,3 +31,6 @@ async function login() {
         alert(data.message);
     }
 }
+<button onclick="register()">
+Zarejestruj
+</button>
