@@ -30,7 +30,4 @@ async function login() {
     } else {
         alert(data.message);
     }
-}
-<button onclick="register()">
-Zarejestruj
-</button>
+
