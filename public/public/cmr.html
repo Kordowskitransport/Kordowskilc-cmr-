@@ -67,3 +67,40 @@ button{
     font-size:18px;
     cursor:pointer;
 }
+async function zapiszCMR(){
+
+    const data = {
+        nadawca:
+            document.getElementById("nadawca").value,
+
+        odbiorca:
+            document.getElementById("odbiorca").value,
+
+        zaladunek:
+            document.getElementById("zaladunek").value,
+
+        rozladunek:
+            document.getElementById("rozladunek").value,
+
+        towar:
+            document.getElementById("towar").value,
+
+        waga:
+            document.getElementById("waga").value,
+
+        oplata:
+            document.getElementById("oplata").value
+    };
+
+    const res = await fetch("/api/cmr",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body:JSON.stringify(data)
+    });
+
+    const wynik = await res.json();
+
+    alert(wynik.message);
+}
