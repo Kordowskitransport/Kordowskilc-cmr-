@@ -188,3 +188,36 @@ CREATE TABLE IF NOT EXISTS drivers (
     truck TEXT
 )
 `);
+app.post("/api/drivers",(req,res)=>{
+
+    const {
+        name,
+        email,
+        phone,
+        truck
+    } = req.body;
+
+    db.run(
+        `
+        INSERT INTO drivers
+        (
+            name,
+            email,
+            phone,
+            truck
+        )
+        VALUES (?,?,?,?)
+        `,
+        [
+            name,
+            email,
+            phone,
+            truck
+        ]
+    );
+
+    res.json({
+        message:"Kierowca dodany"
+    });
+
+});
