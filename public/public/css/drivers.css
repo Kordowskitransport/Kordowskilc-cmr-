@@ -1,0 +1,43 @@
+body{
+    background:#07111f;
+    color:white;
+    font-family:Arial;
+}
+
+.container{
+    padding:40px;
+}
+
+input{
+    padding:12px;
+    margin-right:10px;
+    background:#0d1b2d;
+    border:none;
+    color:white;
+    border-radius:10px;
+}
+
+button{
+    padding:12px 20px;
+    background:#0B4DBB;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+table{
+    width:100%;
+    margin-top:40px;
+    border-collapse:collapse;
+}
+
+th{
+    background:#0B4DBB;
+    padding:15px;
+}
+
+td{
+    background:#0d1b2d;
+    padding:15px;
+}
