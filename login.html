@@ -2,52 +2,37 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<title>Kordowski Logistic</title>
-<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kordowski Logistic - Login</title>
+
+<link rel="stylesheet" href="/css/login.css">
 </head>
+
 <body>
 
-<div class="login-box">
+<div class="login-container">
 
-    <div class="logo">
-        KORDOWSKI<br>
-        LOGISTIC
-    </div>
+    <div class="box">
 
-    <h1>Witaj ponownie</h1>
-    <p>Zaloguj się do panelu kierowcy</p>
+        <div class="logo">
+            KORDOWSKI<br>
+            LOGISTIC
+        </div>
 
-    <input id="email" type="email" placeholder="Adres e-mail">
+        <h2>Logowanie</h2>
 
-    <input id="password" type="password" placeholder="Hasło">
+        <input id="email" type="email" placeholder="Email">
+        <input id="password" type="password" placeholder="Hasło">
 
-    <button onclick="login()">
-        Zaloguj się
-    </button>
+        <button onclick="login()">Zaloguj się</button>
 
-    <div class="register">
-        Nie masz konta?
-        <a href="#">Skontaktuj się z administratorem</a>
+        <p id="msg"></p>
+
     </div>
 
 </div>
 
-<script src="js/login.js"></script>
+<script src="/js/login.js"></script>
 
 </body>
 </html>
-}
-<button onclick="register()">
-Zarejestruj
-</button>
-<img src="images/logo.png" class="logo"> 
-<div class="logo">
-    KORDOWSKI<br>
-    LOGISTIC
-</div>
-<p class="subtitle">
-    TRANSPORT • SPEDYCJA • LOGISTYKA
-</p>
-<a href="/drivers.html">
-🚛 Kierowcy
-</a>
