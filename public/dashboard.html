@@ -26,7 +26,7 @@ body {
     top: 60px;
     left: 0;
     width: 220px;
-    height: 100%;
+    height: calc(100vh - 60px);
     background: #0f1c3f;
     color: white;
     padding-top: 20px;
@@ -64,7 +64,6 @@ button {
     border-radius: 8px;
 }
 </style>
-
 </head>
 
 <body>
@@ -75,23 +74,20 @@ button {
 </div>
 
 <div class="sidebar">
-    <a href="#">🏠 Dashboard</a>
-    <a href="#">📄 CMR</a>
-    <a href="#">🚛 Kierowcy</a>
-    <a href="#">💰 Rozliczenia</a>
+    <a href="/dashboard.html">🏠 Dashboard</a>
+    <a href="/cmr.html">📄 CMR</a>
+    <a href="/drivers.html">🚛 Kierowcy</a>
+    <a href="/payments.html">💰 Rozliczenia</a>
 </div>
 
 <div class="content">
-
     <div class="card">
         <h2>Dashboard</h2>
         <p>System działa poprawnie ✔</p>
     </div>
-
 </div>
 
 <script>
-// BLOKADA BEZ LOGINU
 if (!localStorage.getItem("token")) {
     window.location.href = "/";
 }
